@@ -5,8 +5,7 @@ const keys = require('../config/keys');
 class Mailer extends helper.Mail {
   constructor({subject, recipients}, content) {
     super();
-
-
+    
     this.sendGridApi = sendgrid(keys.sendGridKey);
     this.from_email = new helper.Email('no-reply@sendit.com');
     this.subject = subject;
@@ -17,6 +16,7 @@ class Mailer extends helper.Mail {
     this.addClickTracking();
     this.addRecipients();
   }
+
   formatAddresses(recipients) {
     return recipients.map(({email}) => {
       return new helper.Email(email);
